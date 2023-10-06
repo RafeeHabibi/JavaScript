@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess the Number</title>
+    <style>
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+        overflow-y: hidden;
+        overflow-x: hidden;
+        background-color: lavender;
+      }
+      #divContainer {
+        width: 90%;
+        height: 90%;
+        margin: 5% auto;
+        float: left;
+        display: flex;
+      }
+      body,
+      #divContainer,
+      #divLeft,
+      #divRight {
+        box-sizing: border-box;
+      }
+      #divLeft,
+      #divTRight,
+      #divBRight {
+        border-radius: 5px;
+        box-sizing: border-box;
+        box-shadow: 5px 5px 5px 1px darkcyan;
+        background-color: darkcyan;
+      }
+      #divFLeft,
+      #divTFRight,
+      #divBFRight {
+        border: none;
+        text-align: center;
+        box-sizing: border-box;
+        border-radius: 30% 5px 30% 5px;
+        background-color: lightseagreen;
+      }
+      #divLeft {
+        width: 40%;
+        height: 100%;
+        margin-left: 5%;
+        float: left;
+      }
+      #divFLeft {
+        width: 100%;
+        height: 100%;
+        float: left;
+      }
+      #divRight {
+        width: 60%;
+        height: 100%;
+        margin-left: 5%;
+        float: right;
+        display: grid;
+      }
+      #divTRight {
+        width: 100%;
+        height: 40%;
+        float: left;
+      }
+      #divTFRight,
+      #divBRight,
+      #divBFRight {
+        width: 100%;
+        height: 100%;
+        float: left;
+      }
+      #divBRight {
+        margin-top: -11%;
+      }
+      #HLeft,
+      #hRight,
+      td,
+      form {
+        font-family: "Times New Roman", Serif;
+        font-style: normal;
+        font-weight: bold;
+        color: white;
+        font-size: 2vw;
+      }
+      table {
+        width: 90%;
+        height: 90%;
+        margin: auto;
+        background-color: darkcyan;
+      }
+      table,
+      td {
+        border-collapse: collapse;
+        border: 1px solid lightseagreen;
+      }
+      #btnReset,
+      #btnCheck,
+      #btnStart,
+      #btnShow,
+      #number,
+      #correct {
+        width: 20%;
+        height: 200%;
+        border: none;
+        border-radius: 5px;
+        background-color: darkcyan;
+        box-shadow: 5px 5px 5px 1px darkcyan;
+        font-family: "Times New Roman", Serif;
+        font-style: normal;
+        font-weight: bold;
+        color: white;
+        font-size: 2vw;
+      }
+      #btnReset:hover,
+      #btnCheck:hover,
+      #btnStart:hover,
+      #number:hover,
+      #correct:hover,
+      td:hover {
+        background-color: dodgerblue;
+      }
+      form {
+        margin-left: 5%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="divContainer">
+      <div id="divLeft">
+        <div id="divFLeft">
+          <br />
+          <h1 id="HLeft">Insert Number Between 1 to 20</h1>
+          <br />
+          <table>
+            <tr>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+              <td>4</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>7</td>
+              <td>8</td>
+              <td>9</td>
+              <td>10</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>12</td>
+              <td>13</td>
+              <td>14</td>
+              <td>15</td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <td>17</td>
+              <td>18</td>
+              <td>19</td>
+              <td>20</td>
+            </tr>
+          </table>
+          <br />
+          <input type="reset" name=" " id="btnReset" value="Reset" />
+          &nbsp; &nbsp; &nbsp;
+          <input type="button" name=" " id="btnCheck" value="Check" />
+          &nbsp; &nbsp; &nbsp;
+          <input type="button" name=" " id="btnStart" value="Start" />
+          <br />
+          <br />
+        </div>
+      </div>
+      <div id="divRight">
+        <div id="divTRight">
+          <div id="divTFRight">
+            <h1 id="hRight">Guess The Number!</h1>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+          </div>
+        </div>
+        <div id="divBRight">
+          <div id="divBFRight">
+            <form action="">
+              <br />
+              <input type="button" name=" " id="number" value="?" />
+              &nbsp; &nbsp; &nbsp;
+              <input type="button" name=" " id="correct" value="Correct" />
+              <br />
+              <br />
+              <label class="gender-label"> Correct Guess</label>
+              <br />
+              <label class="gender-label"> 💯 Score = 20</label>
+              <br />
+              <label class="gender-label"> 🏆 High Score = 20</label>
+              <br />
+              <br />
+              <br />
+              <br />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const randomNumber = Math.floor(Math.random() * 20) + 1;
+      let score = 20;
+      let highScore = 20;
+
+      const numberButton = document.getElementById("number");
+      const correctButton = document.getElementById("correct");
+      const hRight = document.getElementById("hRight");
+
+      numberButton.addEventListener("click", () => {
+        // Generate a new random number and update the button text
+        const newRandomNumber = Math.floor(Math.random() * 20) + 1;
+        numberButton.value = newRandomNumber;
+        randomNumber = newRandomNumber;
+      });
+
+      correctButton.addEventListener("click", () => {
+        // Check if the guessed number matches the random number
+        if (parseInt(numberButton.value) === randomNumber) {
+          hRight.textContent =
+            "Congratulations! You guessed the correct number!";
+          if (score > highScore) {
+            highScore = score;
+          }
+          score = 20;
+        } else {
+          score--;
+          if (score <= 0) {
+            hRight.textContent = "Game Over! You ran out of attempts.";
+            score = 20;
+          } else {
+            hRight.textContent = `Wrong guess! Attempts left: ${score}`;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
